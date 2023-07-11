@@ -1,24 +1,32 @@
 /Check if a cell = 0
-/required cells: [0] [1] [2] [3]
-/Takes 1 arguement - the code to be run
-/Code is run at index [4]
+/required cells: [0] [1] [2] [3] [4]
+/Takes 2 arguement - the code to be run if = 0, and code to be run if not 0
+/Code is run at index [5]
 
 
 /clear value
 >[-]+ /[1]
 >[-]  /[2]
 >[-]  /[3]
-<<<
-/index  [0]  [1] [2]  [3]
-/value  val  1    0    0
-/index = 0
+>[-]+  /[4]
+<<<<
+/index  [0]  [1] [2]  [3] [4]
+/value  val  1    0    0   1
+/index = [0]
 
 [>>] /if val != 0 then pointer = [2] = 0
-> /if val != 0 then pointer = [3] = 0 else pointer = [1] = 1
+> /if val = 0 then pointer = [1] = 1, else pointer = [3] = 0
 [
 	>>> /pointer [4]
-	(0) /run code
-	< /pointer must finish at [3]
+	(0) /run code if 0
+	<< /pointer must finish at [2]
 ] /loop should not repeat
+> /if val = 0 then pointer = [3] = 0, else pointer = [4] = 1
+[
+	> /pointer [5]
+	(1) /run code if != 0
+	<<
+]
+/POINTER AT [3]
 <<<
 /end at same index as start
