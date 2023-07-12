@@ -4,7 +4,7 @@
 //Parameter 1: Code to run if not numeric. Run at index [7]
 
 
-*6r
+*6{>[-]}
 *6<
 [
     >+ /increments [1]
