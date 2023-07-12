@@ -1,10 +1,10 @@
-/Check if a cell = 0
-/required cells: [0] [1] [2] [3] [4]
-/Takes 2 arguement - the code to be run if = 0, and code to be run if not 0
-/Code is run at index [5]
+//Check if a cell = 0
+//Cells: 1, 2, 3, 4
+//Parameter 0: Code to run if cell = 0. Run at index [5]
+//Parameter 1: Code to run if cell != 0. Run at index [6]
 
 
-/clear value
+/clear values
 >[-]+ /[1]
 >[-]  /[2]
 >[-]  /[3]

@@ -1,4 +1,4 @@
-/Resets the next cell
-/Requires cells: [1]
+//Resets the next cell
+//Cells: 1
 
 >[-]
