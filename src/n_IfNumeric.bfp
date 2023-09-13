@@ -1,5 +1,5 @@
 //Checks if a cell is a numeric digit
-//Cells: 1,2,3,4,5,6
+//Cells: 0,1,2,3,4,5,6
 //Parameter 0: Code to run if numeric. Run at index [6]
 //Parameter 1: Code to run if not numeric. Run at index [7]
 
