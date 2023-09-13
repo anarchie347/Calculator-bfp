@@ -1,0 +1,8 @@
+//Removes the last character from the console
+//Cells: 0
+
+[-] /decrement to 0
+*8+. /8 -> backspace (moves cursor back)
+*24+. /32 -> space char (overwrites character)
+*24-. /8 -> backspace again (moves cursor back to before the space)
+*8-
