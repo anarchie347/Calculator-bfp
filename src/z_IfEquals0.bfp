@@ -1,8 +1,7 @@
 //Check if a cell = 0
 //Cells: 0,1, 2, 3, 4
-//Parameter 0: Code to run if cell = 0. Run at index [5]
-//Parameter 1: Code to run if cell != 0. Run at index [6]
-
+//Parameter 0: Code to run if cell = 0. Run at index [4]
+//Parameter 1: Code to run if cell != 0. Run at index [4]
 
 /clear values
 >[-]+ /[1]
@@ -10,11 +9,13 @@
 >[-]  /[3]
 >[-]+  /[4]
 <<<<
+
 /index  [0]  [1] [2]  [3] [4]
 /value  val  1    0    0   1
 /index = [0]
 
 [>>] /if val != 0 then pointer = [2] = 0
+
 > /if val = 0 then pointer = [1] = 1, else pointer = [3] = 0
 [
 	>>> /pointer [4]
@@ -23,9 +24,9 @@
 ] /loop should not repeat
 > /if val = 0 then pointer = [3] = 0, else pointer = [4] = 1
 [
-	> /pointer [5]
+	- /set [4] to 0
 	(1) /run code if != 0
-	<<
+	<
 ]
 /POINTER AT [3]
 <<<
