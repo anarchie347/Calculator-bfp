@@ -5,7 +5,7 @@
 [
     ,
     n{}{
-        *4< b *4> /remove input if not numeric
+        *4< b *4> /remove input if not numeric. also overwrites the value in memory
     }
     /b makes cell 0
     >[-]< /reset [1], pointer at [0]
