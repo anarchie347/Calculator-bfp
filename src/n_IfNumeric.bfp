@@ -1,73 +1,62 @@
-//Checks if a cell is a numeric digit
-//Cells: 0,1,2,3,4,5,6,7
-//Parameter 0: Code to run if numeric. Run at index [6]
-//Parameter 1: Code to run if not numeric. Run at index [6]
+//Checks if a cell represents a numeric value
+//Cells: 0, 1, 2, 3, 5
+//Parameter 0: Code to run if numeric. Run at [4]
+//Parameter 1: Code to run if not numeric. Run at [4]
+*2{>[-]}
+*2<
 
-
-*6{>[-]}
-*6<
 [
-    >+ /increments [1]
-    *6>+ /increments [7]
-    *7<- /decrements [0]
-] /Copies [0] to [1] and [7]
-/POINTER AT [0]
+    >>+
+    <<-
+] /moves val to [2], pointer at [0]
+>>*48- /decrease [2] by 48
+/Numbers are 48-57 inclusive
+/now, if [2] is between 0 and 9, it is a number
+/any removed increments will be replaced later
 
-*47+
+<<*10+ /[0] = 10 tries to subtract and see if 0
+
+/[0] = 10 = retires remaining
+/[1] = 0 = result from test
+/[2] = val (decreased by 47)
+/Pointer at [0]
+
 [
-    >- /decrement [1]
-    z{ /if equal to 0, set [0] to 1
-        + /increment [6]
-		*6< /go to [0]
-		[-]+ /set [0] to 1 ([0] will be decremented at end of loop)
-		*6> /back to [6]
+    /pointer = [0] = retries
+    >> /if value = 0, then numeric
+    z{
+        /executes at [5]
+        *5< /pointer at [0] = retries
+        [
+            >>-
+            <<-
+        ] /sets [0] = retries = 0, and [2] = modified val = val - 58
+        
+        >+ /result = 1
+        *4> /back to [5]    
+    }{
+        /executes at [5]
+        <<<- /decrease val
+        <<- /decrease tries
+        *5> /back to [5]
+
     }
-    /POINTER AT [1]
-    <- /decrement [0]
+    << /back to [0] = retries
 ]
-/ [0] = 0
-/POINTER AT [0]
-*10+
-*5>+ *5< /increment [5]
+/finish loop at [0] = 0. val is stored in [1] but has been decreased by 58
+
+>>
 [
-    >- /decrement [1]
-    z{ /if equal to 0, set [0] to 1
-        - /decrement [6]
-		*6< /go to [0]
-		[-]+ /set [0] to 1 ([0] will be decremented at end of loop)
-		*6> /back to [6]
-    }
-    /POINTER AT [1]
-    <- /decrement [0]
-]
-/POINTER AT [0]
-/value is stored in [7]
-/result is stored in [6]
+    <<+
+    >>-
+] /move val - 58 to [0]
+<<*58+ /restore val
 
-/If value is numeric, then [6] = 0
-/If value is too small, then [6] = 2
-/If value is too big, then [6] = 1
+/[0] = original value
+/[1] = 1 if number, else 0
+/[2] = 0, not needed
+/pointer at [0]
 
-*7>
-<:?>
-[
-    -
-    *7< + *7>
-] /Move [7] to [0]
-/POINTER AT [7]
-
-
-*6<[-] /reset [1]
-*5> /POINTER AT [6]
-[
-    -
-    *5< + *5>
-] /Move [6] to [1]
-
-
-*5< /go to [1] to check result
-
-
-z{(0)}{[-](1)} /set cell to 0 and run code at [6]
-
-< /finish at [0]
+> /to result
+z{(1)}{(0)} /code executed at [4]
+< /back to start
