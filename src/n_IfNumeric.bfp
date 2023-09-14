@@ -2,61 +2,6 @@
 //Cells: 0, 1, 2, 3, 5
 //Parameter 0: Code to run if numeric. Run at [4]
 //Parameter 1: Code to run if not numeric. Run at [4]
-*2{>[-]}
-*2<
 
-[
-    >>+
-    <<-
-] /moves val to [2], pointer at [0]
->>*48- /decrease [2] by 48
-/Numbers are 48-57 inclusive
-/now, if [2] is between 0 and 9, it is a number
-/any removed increments will be replaced later
-
-<<*10+ /[0] = 10 tries to subtract and see if 0
-
-/[0] = 10 = retires remaining
-/[1] = 0 = result from test
-/[2] = val (decreased by 47)
-/Pointer at [0]
-
-[
-    /pointer = [0] = retries
-    >> /if value = 0, then numeric
-    z{
-        /executes at [5]
-        *5< /pointer at [0] = retries
-        [
-            >>-
-            <<-
-        ] /sets [0] = retries = 0, and [2] = modified val = val - 58
-        
-        >+ /result = 1
-        *4> /back to [5]    
-    }{
-        /executes at [5]
-        <<<- /decrease val
-        <<- /decrease tries
-        *5> /back to [5]
-
-    }
-    << /back to [0] = retries
-]
-/finish loop at [0] = 0. val is stored in [1] but has been decreased by 58
-
->>
-[
-    <<+
-    >>-
-] /move val - 58 to [0]
-<<*58+ /restore val
-
-/[0] = original value
-/[1] = 1 if number, else 0
-/[2] = 0, not needed
-/pointer at [0]
-
-> /to result
-z{(1)}{(0)} /code executed at [4]
-< /back to start
+r{*48+}{*10+}{(0)}{(1)}
+/numbers are between 48 and 57 inclusive

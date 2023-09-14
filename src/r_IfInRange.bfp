@@ -1,0 +1,71 @@
+//Checks if a cell is within a specified range
+//Cells: 
+//Parameter 0: Instructions to get the inclusive minium value, e.g. *64+ for 64. Executed at [3] and [0]
+//Parameter 1: Instructions to get the length of the range, e.g. *5+ for 5. Executed at [0]
+//Parameter 2: Code to run if in range. Executed at [4]
+//Parameter 3: Code to run if not in range. Executed at [4]
+
+*3{>[-]}
+*3<
+
+[
+    >>+
+    <<-
+] /moves val to [2], pointer at [0]
+/>>*48- /decrease [2] by 48
+
+>>>(0) /store min bound in [3]
+[
+    <-
+    >-
+] /subtracts min value from the given value
+< /Pointer at [2]
+
+
+<<(1) /[0] = retries to subtract and see if 0
+
+/[0] = retires remaining
+/[1] = 0 = result from test
+/[2] = val (decreased by min value)
+/[3] = 0 = irrelevant
+/Pointer at [0]
+
+[
+    /pointer = [0] = retries
+    >> /if value = 0, then numeric
+    z{
+        /executes at [5]
+        *5< /pointer at [0] = retries
+        [
+            >>-
+            <<-
+        ] /sets [0] = retries = 0, and [2] = modified val = val - length - min
+        
+        >+ /result = 1
+        *4> /back to [5]    
+    }{
+        /executes at [5]
+        <<<- /decrease val
+        <<- /decrease tries
+        *5> /back to [5]
+
+    }
+    << /back to [0] = retries
+]
+/finish loop at [0] = 0. val is stored in [1] but has been decreased by (min + length)
+
+>>
+[
+    <<+
+    >>-
+] /move val - (min + length) to [0]
+<<(0)(1) /restore val
+
+/[0] = original value
+/[1] = 1 if in range, else 0
+/[2] = 0, not needed
+/pointer at [0]
+
+> /to result
+z{(3)}{(2)} /code executed at [4]
+< /back to start
