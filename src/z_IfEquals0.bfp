@@ -1,34 +1,23 @@
-//Check if a cell = 0
-//Cells: 0,1, 2, 3, 4, 5
-//Parameter 0: Code to run if cell = 0. Run at index [5]
-//Parameter 1: Code to run if cell != 0. Run at index [5]
+//Checks if a cell = 0;
+//Cells: 
+//Parameter 0: Code to run if cell = 0. Run at index [3]
+//Parameter 1: Code to run if cell != 0. Run at index [3]
 
-/clear values
->[-]+ /[1]
->[-]  /[2]
->[-]  /[3]
->[-]+  /[4]
->[-] /[5]
-<<<<<
+>[-] /[1] = 0
+>[-]- /[2] = 255
+<< /[0]
 
-/index  [0]  [1] [2]  [3] [4]
-/value  val  1    0    0   1
-/index = [0]
-
-[>>] /if val != 0 then pointer = [2] = 0
-
-> /if val = 0 then pointer = [1] = 1, else pointer = [3] = 0
 [
-	>>>> /pointer [5]
-	(0) /run code if 0
-	<<< /pointer must finish at [2]
-] /loop should not repeat
-> /if val = 0 then pointer = [3] = 0, else pointer = [4] = 1
-[
-	> /[5]
-	(1) /run code if != 0
-	<<
+    >>> /[3]
+    [-](1) /run code if != 0
+    <<
 ]
-/POINTER AT [3]
-<<<
-/end at same index as start
+/if val = 0, pointer at [0] else pointer at[1]
+> /if val = 0, pointer at [1] = 0, else pointer at [2] = 0
++ /if val = 0, [1] = 1 else [2] = 0
+[
+    >> /[3]
+    [-](0)
+    <[-] /reset 2 to 0 to exit the loop ([2] is 255 if this code is run)
+]
+<<
