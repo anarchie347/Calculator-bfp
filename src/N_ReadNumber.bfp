@@ -5,12 +5,12 @@
 [
     ,
     n{}{
-        b /remove input if not mueric
+        *4< b *4> /remove input if not numeric
     }
     /b makes cell 0
     >[-]< /reset [1], pointer at [0]
     [
-        *48-
+        *48-:?
         >
     ] /if value is not 0 (therefore numeric), change to integer value, move to next cell.
     + /continue loop. it will be overwritten with the write input
