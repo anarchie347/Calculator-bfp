@@ -1,26 +1,26 @@
 //Checks if a cell is a numeric digit
-//Cells: 0,1,2,3,4,5,6
-//Parameter 0: Code to run if numeric. Run at index [5]
-//Parameter 1: Code to run if not numeric. Run at index [5]
+//Cells: 0,1,2,3,4,5,6,7
+//Parameter 0: Code to run if numeric. Run at index [6]
+//Parameter 1: Code to run if not numeric. Run at index [6]
 
 
 *6{>[-]}
 *6<
 [
     >+ /increments [1]
-    *5>+ /increments [6]
-    *6<- /decrements [0]
-] /Copies [0] to [1] and [6]
+    *6>+ /increments [7]
+    *7<- /decrements [0]
+] /Copies [0] to [1] and [7]
 /POINTER AT [0]
 
 *47+
 [
     >- /decrement [1]
     z{ /if equal to 0, set [0] to 1
-        + /increment [5]
-		<<<<< /go to [0]
+        + /increment [6]
+		*6< /go to [0]
 		[-]+ /set [0] to 1 ([0] will be decremented at end of loop)
-		>>>>> /back to [5]
+		*6> /back to [6]
     }
     /POINTER AT [1]
     <- /decrement [0]
@@ -32,39 +32,42 @@
 [
     >- /decrement [1]
     z{ /if equal to 0, set [0] to 1
-        - /decrement [5]
-		<<<<< /go to [0]
+        - /decrement [6]
+		*6< /go to [0]
 		[-]+ /set [0] to 1 ([0] will be decremented at end of loop)
-		>>>>> /back to [5]
+		*6> /back to [6]
     }
     /POINTER AT [1]
     <- /decrement [0]
 ]
 /POINTER AT [0]
-/value is stored in [6]
-/result is stored in [5]
+/value is stored in [7]
+/result is stored in [6]
 
-/If value is numeric, then [5] = 0
-/If value is too small, then [5] = 2
-/If value is too big, then [5] = 1
+/If value is numeric, then [6] = 0
+/If value is too small, then [6] = 2
+/If value is too big, then [6] = 1
 
-*6>
+*7>
+<:?>
 [
     -
-    *6< + *6>
-] /Move [6] to [0]
-/POINTER AT [6]
+    *7< + *7>
+] /Move [7] to [0]
+/POINTER AT [7]
 
-*5<[-] /reset [1]
-*4> /POINTER AT [5]
+
+*6<[-] /reset [1]
+*5> /POINTER AT [6]
 [
     -
-    *4< + *4>
-] /Move [5] to [1]
+    *5< + *5>
+] /Move [6] to [1]
 
 
-*4< /go to [1] to check result
+*5< /go to [1] to check result
 
-z{(0)}{(1)} /run code at [5]
+
+z{(0)}{[-](1)} /set cell to 0 and run code at [6]
 
 < /finish at [0]
