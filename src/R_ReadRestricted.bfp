@@ -1,0 +1,18 @@
+//Reads a number, stored as a string over the next n cells
+//Cells: 0,1, 2, 3, 4, 5
+//Parameter 1: Instructions to get the inclusive minium value, e.g. *64+ for 64. Executed at [3] and [0]
+//Parameter 1: Instructions to get the length of the range, e.g. *5+ for 5. Executed at [0]
+>+ /must start at [1]
+[
+    <, /take input at [0]
+    r{(0)}{(1)}{}{*4< b *4>}
+    >[-]+
+    >[-]
+    >[-]
+    <<< /[1] = 1, [2] = 0, pointer at [0]
+    [
+        >> /to [2]
+    ] /if allowed, pointer at [2] = 0, else pointer at [0] = 0
+    > /if allowed, pointer at [3] = 0, else pointer at [1] = 1
+]
+<<< /finish at 0
