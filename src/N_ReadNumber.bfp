@@ -1,5 +1,5 @@
 //Reads a number, stored as a string over the next n cells
-//Cells: 0,1, 2, 3, 4
+//Cells: 0,1, 2, 3, 4, 5
 >+ /must start at [1]
 [
     <, /take input at [0]
