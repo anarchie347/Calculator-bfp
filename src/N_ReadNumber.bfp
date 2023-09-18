@@ -1,17 +1,17 @@
 //Reads a number, stored as a string over the next n cells
 //Cells: 0,1, 2, 3, 4
-
-+ /so loop starts
+>+ /must start at [1]
 [
-    ,
-    n{}{
-        *4< b *4> /remove input if not numeric. also overwrites the value in memory
-    }
-    /b makes cell 0
-    >[-]< /reset [1], pointer at [0]
+    <, /take input at [0]
+    n{}{*4< b *4>}
+    >[-]+
+    >[-]
+    >[-]
+    <<< /[1] = 1, [2] = 0, pointer at [0]
     [
-        *48-:?
-        >
-    ] /if value is not 0 (therefore numeric), change to integer value, move to next cell.
-    + /continue loop. it will be overwritten with the write input
+        *48- /reduce to int
+        >> /to [2]
+    ] /if numeric, pointer at [2] = 0, else pointer at [0] = 0
+    > /if numeric, pointer at [3] = 0, else pointer at [1] = 1
 ]
+<<< /finish at 0
