@@ -1,17 +1,5 @@
 //Reads a number, stored as a string over the next n cells
 //Cells: 0,1, 2, 3, 4, 5
->+ /must start at [1]
-[
-    <, /take input at [0]
-    n{}{*4< b *4>}
-    >[-]+
-    >[-]
-    >[-]
-    <<< /[1] = 1, [2] = 0, pointer at [0]
-    [
-        *48- /reduce to int
-        >> /to [2]
-    ] /if numeric, pointer at [2] = 0, else pointer at [0] = 0
-    > /if numeric, pointer at [3] = 0, else pointer at [1] = 1
-]
-<<< /finish at 0
+
+R{*48+}{*10+} /Read number
+*48- /convert to integer
