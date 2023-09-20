@@ -1,5 +1,5 @@
 //Checks if a cell is within a specified range
-//Cells: 
+//Cells: 1, 2, 3, 4, 5
 //Parameter 0: Instructions to get the inclusive minium value, e.g. *64+ for 64. Executed at [3] and [0]
 //Parameter 1: Instructions to get the length of the range, e.g. *5+ for 5. Executed at [0]
 //Parameter 2: Code to run if in range. Executed at [4]

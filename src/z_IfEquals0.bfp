@@ -1,5 +1,5 @@
 //Checks if a cell = 0;
-//Cells: 
+//Cells: 1, 2, 3
 //Parameter 0: Code to run if cell = 0. Run at index [3]
 //Parameter 1: Code to run if cell != 0. Run at index [3]
 
