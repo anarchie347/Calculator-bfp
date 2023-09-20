@@ -1,4 +1,4 @@
-//Reads a number, stored as a string over the next n cells
+//Reads a single numerical digit, stores as the integer value
 //Cells: 0,1, 2, 3, 4, 5
 
 R{*48+}{*10+} /Read number
