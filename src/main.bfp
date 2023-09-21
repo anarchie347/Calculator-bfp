@@ -19,12 +19,12 @@ N>N>N> /num2
     <<<-
 ] /add [2] to [5], stored in [5]
 >>> /[5]
-r{*10+}{*9+}{
+r{++++++++++}{+++++++++}{
     /executed at [9]
     /carry digit
-    *5< + /add 1 to [4]
-    > *10- /sub 10 from [5]
-    *4> /back to [9]
+    <<<<< + /add 1 to [4]
+    > ---------- /sub 10 from [5]
+    >>>> /back to [9]
 }{}
 /[5]
 [
