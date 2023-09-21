@@ -10,7 +10,8 @@ N>N>N> /num2
 /[6] = 61 (irrelevant)
 
 
-/units column
+/commnets are base on units column calc. For other 10s column, subtract 1 from all positions, subtract 2 for 100s column
+/current error with transpiler with nested repetition
 *3{
 <<< /[2]
 [
