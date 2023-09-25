@@ -13,30 +13,36 @@ N>N>N> /num2
 /commnets are base on units column calc. For other 10s column, subtract 1 from all positions, subtract 2 for 100s column
 /current error with transpiler with nested repetition
 *3{
-<<< /[2]
-[
-    >>>+
-    <<<-
-] /add [2] to [5], stored in [5]
->>> /[5]
-r{*10+}{*9+}{
-    /executed at [9]
-    /carry digit
-    *5< + /add 1 to [4]
-    > *10- /sub 10 from [5]
-    *4> /back to [9]
-}{}
-/[5]
+    <<< /[2]
+    [
+        >>>+
+        <<<-
+    ] /add [2] to [5], stored in [5]
+    >>> /[5]
+    r{*10+}{*9+}{
+        /executed at [9]
+        /carry digit
+        *5< + /add 1 to [4]
+        > *10- /sub 10 from [5]
+        *4> /back to [9]
+    }{}
+    /[5]
+    [
+        *5>+
+        *5<-
+    ] /move units to [10] so it wont be affected by subsequent additions
+    /pointer at [5]
+    <
+}
+/pointer at [2]
 [
     *5>+
     *5<-
-] /move units to [10] so it wont be affected by subsequent additions
-/pointer at [5]
-<
+]
+/Move carry to 7
+/results stored in [7] [8] [9] [10]
+*5>
+*4{
+    *48+.> /ouput number
 }
-/pointer at [2]
-/results stored in [8] [9] [10]
-*6>
-*48+.> /output number
-*48+.>
-*48+.
+< /finish at 10
