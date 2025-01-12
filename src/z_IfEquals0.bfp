@@ -18,6 +18,6 @@
 [
     >> /[3]
     [-](0)
-    <[-] /reset 2 to 0 to exit the loop ([2] is 255 if this code is run)
+    <+ /reset 2 to 0 to exit the loop ([2] is 255 if this code is run)
 ]
 <<
